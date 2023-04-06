@@ -8,7 +8,7 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 WHITE = (255, 255, 255)
 
-SPEED = 10
+SPEED = 5
 changeX = 0
 
 # настройки главного экрана
@@ -25,7 +25,7 @@ clock = pygame.time.Clock()
 vel = 5
 jump = False
 jumpCount = 0
-jumpMax = 23
+jumpMax = 15
 onGround = True
 onPlatform = False
 
