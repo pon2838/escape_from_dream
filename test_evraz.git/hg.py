@@ -73,11 +73,7 @@ map =  [
 ]
  
 
-foods = []
-foodblock = pygame.Surface((40, 40))
-foodblock.fill(RED)
-count = 0
-f = pygame.font.Font(None, 60)
+
 
 
 
@@ -106,12 +102,7 @@ while 1:
 
     
 
-    for i in range(len(foods)):
-        if manrect.colliderect(foods[i]) == True:
-            # foods = []
-            foods.pop(i)
-            count += 1
-            break
+    
 
 
 
@@ -142,7 +133,6 @@ while 1:
         jumpCount -= 1
         man = manjump
     else:
-        jump = False
         onGround = True
 
     if manrect.bottom > HEIGHT:
@@ -187,8 +177,7 @@ while 1:
     # заливаем главный фон черным цветом
     mainScreen.fill(mainScreenColor)
 
-    sc_text = f.render('Съедено блоков: ' + str(count), 1, RED)
-    mainScreen.blit(sc_text, (30, 30))
+    
 
 
     # рисуем блок еды
