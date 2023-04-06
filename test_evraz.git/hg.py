@@ -25,7 +25,7 @@ clock = pygame.time.Clock()
 vel = 5
 jump = False
 jumpCount = 0
-jumpMax = 15
+jumpMax = 23
 onGround = True
 onPlatform = False
 
