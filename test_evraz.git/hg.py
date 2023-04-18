@@ -25,7 +25,7 @@ clock = pygame.time.Clock()
 vel = 5
 jump = False
 jumpCount = 0
-jumpMax = 23
+jumpMax = 32
 onGround = True
 onPlatform = False
 
@@ -162,6 +162,11 @@ while 1:
                 onGround = True
                 onPlatform = True
                 manrect.bottom = platformrect.top
+            if manrect.top < manrect_old.top:
+                jump = False
+                onGround = True
+                onPlatform = True
+                manrect.top = platformrect.bottom
 
     # Проверка падаем с платформы, потому что вышли с неё
     if onPlatform == True:
