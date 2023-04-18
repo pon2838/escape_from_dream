@@ -167,6 +167,11 @@ while 1:
                 onGround = True
                 onPlatform = True
                 manrect.top = platformrect.bottom
+            if manrect.bottom > manrect_old.bottom:
+                jump = False
+                onGround = True
+                onPlatform = True
+                manrect.bottom = platformrect.top
 
     # Проверка падаем с платформы, потому что вышли с неё
     if onPlatform == True:
