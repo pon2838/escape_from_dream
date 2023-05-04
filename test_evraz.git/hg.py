@@ -53,6 +53,18 @@ back1 = back.get_rect()
 trollgeRect.left = WIDTH//2 + 70
 trollgeRect2.bottom = HEIGHT//2 - 300
 trollgeRect2.left = WIDTH//2 - 530
+trollge3 = pygame.image.load('trollge2.png')
+trollgeRect3 = trollge3.get_rect()
+trollgeRect3.bottom = HEIGHT//2
+trollgeRect3.left = WIDTH//2
+background = pygame.image.load('background.png')
+background1 = background.get_rect()
+background1.bottom = 1025
+background1.left = 0
+trollge4 = pygame.image.load('trollge.png')
+trollgeRect4 = trollge4.get_rect()
+trollgeRect4.bottom = 163
+trollgeRect4.left = WIDTH//2
 
 platform = pygame.image.load('walle.png')
 exitimage = pygame.image.load('portal.png')
@@ -227,16 +239,28 @@ while 1:
     if trollgeRect.x >= 100:
         trollgeRect.x += 15   
 
+
     if manrect in trollgeRect2:
         sys.exit()
     if trollgeRect2.y >= 800:
         trollgeRect2.y =  150
         
     if trollgeRect2.y >= 100:
-        trollgeRect2.y += 15   
+        trollgeRect2.y += 15  
+
+
+    if manrect in trollgeRect4:
+        sys.exit()
+    if trollgeRect4.x >= 800:
+        trollgeRect4.x =  100
+        print(trollgeRect4)
+        
+    if trollgeRect4.x >= 100:
+        trollgeRect4.x += 5  
+        print(trollgeRect4) 
 
     # заливаем главный фон черным цветом
-    mainScreen.blit(back,back1)
+    mainScreen.fill(mainScreenColor)
 
         
        
@@ -253,6 +277,8 @@ while 1:
     mainScreen.blit(man, manrect)
     mainScreen.blit(trollge, trollgeRect)
     mainScreen.blit(trollge, trollgeRect2)
+    mainScreen.blit(trollge4, trollgeRect4)
+    
 
     pygame.display.flip()
     clock.tick(FPS)
