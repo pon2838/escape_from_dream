@@ -7,9 +7,11 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 WHITE = (255, 255, 255)
+o = 3
 
 SPEED = 9
 changeX = 0
+time = 0
 
 # настройки главного экрана
 WIDTH = 1500
@@ -37,8 +39,15 @@ manl = manr.copy()
 manl = pygame.transform.flip(manl, True, False)
 man = manstand
 manrect = manr.get_rect()
-manrect.bottom = HEIGHT//2
+manrect.bottom = HEIGHT//2 -15
 manrect.left = WIDTH//2
+trollge = pygame.image.load('trollge.png')
+trollgeRect = trollge.get_rect()
+trollgeRect2 = trollge.get_rect()
+trollgeRect.bottom = HEIGHT//2
+trollgeRect.left = WIDTH//2 + 70
+trollgeRect2.bottom = HEIGHT//2 - 300
+trollgeRect2.left = WIDTH//2 - 530
 
 platform = pygame.image.load('кирпич шоколадка small.png')
 
@@ -50,26 +59,26 @@ platforms = [
 ]
 
 map =  [
-    '*****    ***********************',
-    '*                              *',
-    '*                              *',
-    '*   ****************************',
-    '*                              *',
-    '*                              *',
-    '*                              *',
-    '*                      ****    *',
-    '*                              *',
-    '*          *****               *',
-    '*                          *****',
-    '***                            *',
-    '*                              *',
-    '*     ***               **     *',
-    '*                              *',
-    '****       ****              ***',
-    '*                              *',
-    '*                              *',
-    '*                              *',
-    '********************************'
+    '*****    **********************       *',
+    '*                                     *',
+    '*                                     *',
+    '*   ***************************       *',
+    '*                                     *',
+    '*                                     *',
+    '*                                     *',
+    '*                      ****           *',
+    '*                                     *',
+    '*          *****                      *',
+    '*                          ****       *',
+    '***                                   *',
+    '*                                     *',
+    '*     ***               **            *',
+    '*                                     *',
+    '****       ****              **       *',
+    '*                                     *',
+    '*                                     *',
+    '*                                     *',
+    '***************************************'
 ]
  
 
@@ -116,10 +125,14 @@ while 1:
     if keys[pygame.K_LEFT]:
         changeX = -1 * SPEED
         man = manl
+        time = time + 1
+        print(time)
 
     if keys[pygame.K_RIGHT]:
         changeX = SPEED
         man = manr
+        time = time + 1
+        print(time)
 
     if not keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]:
         changeX = 0
@@ -141,6 +154,8 @@ while 1:
         jump = False
 
     manrect.x += changeX
+    if time == 200:
+        pon = 0
 
     # проверка столкновения блока еды и змеи
     for platformrect in platforms:
@@ -183,12 +198,29 @@ while 1:
             jumpCount = -1
             onGround = False
             onPlatform = False
+    
+    if manrect in trollgeRect:
+        sys.exit()
+    if trollgeRect.x >= 1500:
+        trollgeRect.x =  100
+        
+    if trollgeRect.x >= 100:
+        trollgeRect.x += 15   
+
+    if manrect in trollgeRect2:
+        sys.exit()
+    if trollgeRect2.y >= 800:
+        trollgeRect2.y =  150
+        
+    if trollgeRect2.y >= 100:
+        trollgeRect2.y += 15   
 
     # заливаем главный фон черным цветом
     mainScreen.fill(mainScreenColor)
 
-    
-
+        
+       
+       
 
     # рисуем блок еды
     for platformrect in platforms:
@@ -197,6 +229,8 @@ while 1:
 
     # рисуем змею
     mainScreen.blit(man, manrect)
+    mainScreen.blit(trollge, trollgeRect)
+    mainScreen.blit(trollge, trollgeRect2)
 
     pygame.display.flip()
     clock.tick(FPS)

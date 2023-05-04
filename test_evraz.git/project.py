@@ -150,5 +150,3 @@ entities = pygame.sprite.Group() # Все объекты
 animatedEntities = pygame.sprite.Group() # все анимированные объекты, за исключением героя
 monsters = pygame.sprite.Group() # Все передвигающиеся объекты
 platforms = [] # то, во что мы будем врезаться или опираться
-if __name__ == "__main__":
-    main()
