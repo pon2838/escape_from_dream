@@ -1,5 +1,6 @@
 import pygame, sys
 import random
+import time
 pygame.init()
 
 # цвета
@@ -17,7 +18,7 @@ time = 0
 WIDTH = 1500
 HEIGHT = 1000
 mainScreen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
-mainScreenColor = WHITE
+mainScreenColor = BLACK 
 pygame.display.set_caption("Моя игра")
 
 # число кадров в секунду
@@ -39,17 +40,22 @@ manl = manr.copy()
 manl = pygame.transform.flip(manl, True, False)
 man = manstand
 manrect = manr.get_rect()
+dd = pygame.image.load('dd.png')
+ddd = dd.get_rect()
 manrect.bottom = HEIGHT//2 -15
 manrect.left = WIDTH//2
 trollge = pygame.image.load('trollge.png')
 trollgeRect = trollge.get_rect()
 trollgeRect2 = trollge.get_rect()
 trollgeRect.bottom = HEIGHT//2
+back = pygame.image.load('back.png')
+back1 = back.get_rect()
 trollgeRect.left = WIDTH//2 + 70
 trollgeRect2.bottom = HEIGHT//2 - 300
 trollgeRect2.left = WIDTH//2 - 530
 
-platform = pygame.image.load('кирпич шоколадка small.png')
+platform = pygame.image.load('walle.png')
+exitimage = pygame.image.load('portal.png')
 
 # platform = pygame.Surface((250, 100))
 
@@ -58,27 +64,30 @@ platforms = [
     # platform.get_rect(left = 0, bottom = HEIGHT - 200)
 ]
 
-map =  [
-    '*****    ***********************',
-    '*                              *',
-    '*                              *',
-    '*   ****************************',
-    '*                              *',
-    '*                              *',
-    '*                              *',
-    '*                      ****    *',
-    '*                              *',
-    '*          *****               *',
-    '*                          *****',
-    '***                            *',
-    '*                              *',
-    '*     ***               **     *',
-    '*                              *',
-    '****       ****              ***',
-    '*                              *',
-    '*                              *',
-    '*                              *',
-    '********************************'
+activeMap = 0
+maps =  [
+    [
+        '*****----**********************',
+        '*                             *',
+        '*                             *',
+        '*   ***************************',
+        '*                             *',
+        '*                             *',
+        '*                             *',
+        '*                     ****    *',
+        '*                             *',
+        '*          *****              *',
+        '*                         *****',
+        '***                           *',
+        '*                             *',
+        '*     ***              **     *',
+        '*                             *',
+        '****       ****             ***',
+        '*                             *',
+        '*                             *',
+        '*                             *',
+        '*******************************'
+    ],
 ]
  
 
@@ -99,6 +108,9 @@ while 1:
                 onPlatform = False
 
     platforms = []
+    exit = []
+
+    map = maps[activeMap]
 
     for i in range(len(map)):
         for j in range(len(map[i])):
@@ -108,6 +120,12 @@ while 1:
                 platformrect.y = 54 * i
                 platforms.append(platformrect)
                 mainScreen.blit(platform, platformrect)
+            elif map[i][j] == '-':
+                exitrect = platform.get_rect()
+                exitrect.x = 54 * j
+                exitrect.y = 54 * i
+                exit.append(exitrect)
+                mainScreen.blit(exitimage, exitrect)
 
     
 
@@ -200,7 +218,10 @@ while 1:
             onPlatform = False
     
     if manrect in trollgeRect:
+        mainScreen.blit(dd,ddd)
+        time.sleep(4)
         sys.exit()
+        
     if trollgeRect.x >= 1500:
         trollgeRect.x =  100
         
@@ -216,7 +237,7 @@ while 1:
         trollgeRect2.y += 15   
 
     # заливаем главный фон черным цветом
-    mainScreen.fill(mainScreenColor)
+    mainScreen.blit(back,back1)
 
         
        
@@ -225,6 +246,8 @@ while 1:
     # рисуем блок еды
     for platformrect in platforms:
         mainScreen.blit(platform, platformrect)
+        
+        
 
 
     # рисуем змею
