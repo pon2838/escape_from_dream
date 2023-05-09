@@ -218,8 +218,7 @@ while 1:
             onPlatform = False
     
     if manrect in trollgeRect:
-        mainScreen.blit(dd,ddd)
-        time.sleep(4)
+        mainScreen.blit(dd,ddd) 
         sys.exit()
         
     if trollgeRect.x >= 1500:
