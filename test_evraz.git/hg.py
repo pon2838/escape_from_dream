@@ -124,7 +124,6 @@ while 1:
     platforms = []
     exit = []
 
-    map = maps[activeMap]
 
     for i in range(len(map)):
         for j in range(len(map[i])):
@@ -234,7 +233,7 @@ while 1:
        
     
     if manrect in trollgeRect:
-        mainScreen.blit(dd,ddd) 
+
         sys.exit()
         
     if trollgeRect.x >= 1500:
@@ -265,7 +264,7 @@ while 1:
 
     # заливаем главный фон черным цветом
     
-    mainScreen.fill(mainScreenColor)
+    mainScreen.blit(back,back1)
 
         
        
