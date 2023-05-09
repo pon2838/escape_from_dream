@@ -40,10 +40,10 @@ manl = manr.copy()
 manl = pygame.transform.flip(manl, True, False)
 man = manstand
 manrect = manr.get_rect()
-dd = pygame.image.load('dd.png')
-ddd = dd.get_rect()
 manrect.bottom = HEIGHT//2 -15
 manrect.left = WIDTH//2
+
+
 trollge = pygame.image.load('trollge.png')
 trollgeRect = trollge.get_rect()
 trollgeRect2 = trollge.get_rect()
