@@ -1,6 +1,5 @@
 import pygame, sys
 import random
-import time
 pygame.init()
 
 # цвета
@@ -40,10 +39,8 @@ manl = manr.copy()
 manl = pygame.transform.flip(manl, True, False)
 man = manstand
 manrect = manr.get_rect()
-manrect.bottom = HEIGHT//2 -15
-manrect.left = WIDTH//2
-
-
+manrect.bottom = HEIGHT//2 +500
+manrect.left = WIDTH//2 + 800
 trollge = pygame.image.load('trollge.png')
 trollgeRect = trollge.get_rect()
 trollgeRect2 = trollge.get_rect()
@@ -65,6 +62,14 @@ trollge4 = pygame.image.load('trollge.png')
 trollgeRect4 = trollge4.get_rect()
 trollgeRect4.bottom = 163
 trollgeRect4.left = WIDTH//2
+trollge5 = pygame.image.load('trollge.png')
+trollgeRect5 = trollge5.get_rect()
+trollgeRect5.bottom = HEIGHT//2 + 500
+trollgeRect5.left = WIDTH//2 + 200
+trollge6 = pygame.image.load('trollge.png')
+trollgeRect6 = trollge6.get_rect()
+trollgeRect6.bottom = HEIGHT//2 + 30
+trollgeRect6.left = WIDTH//2 + 525
 
 platform = pygame.image.load('walle.png')
 exitimage = pygame.image.load('portal.png')
@@ -76,30 +81,27 @@ platforms = [
     # platform.get_rect(left = 0, bottom = HEIGHT - 200)
 ]
 
-activeMap = 0
-maps =  [
-    [
-        '*****----**********************',
-        '*                             *',
-        '*                             *',
-        '*   ***************************',
-        '*                             *',
-        '*                             *',
-        '*                             *',
-        '*                     ****    *',
-        '*                             *',
-        '*          *****              *',
-        '*                         *****',
-        '***                           *',
-        '*                             *',
-        '*     ***              **     *',
-        '*                             *',
-        '****       ****             ***',
-        '*                             *',
-        '*                             *',
-        '*                             *',
-        '*******************************'
-    ],
+map =  [
+    '*****    **********************       *',
+    '*                                     *',
+    '*                                     *',
+    '*   ***************************       *',
+    '*                                     *',
+    '*                                     *',
+    '*                                     *',
+    '*                      ****           *',
+    '*                                     *',
+    '*          *****                      *',
+    '*                          ****       *',
+    '***                                   *',
+    '*                                     *',
+    '*     ***               **            *',
+    '*                                     *',
+    '****       ****              **       *',
+    '*                                     *',
+    '*                                     *',
+    '*                                     *',
+    '***************************************'
 ]
  
 
@@ -228,6 +230,8 @@ while 1:
             jumpCount = -1
             onGround = False
             onPlatform = False
+
+       
     
     if manrect in trollgeRect:
         mainScreen.blit(dd,ddd) 
@@ -256,28 +260,31 @@ while 1:
         print(trollgeRect4)
         
     if trollgeRect4.x >= 100:
-        trollgeRect4.x += 5  
-        print(trollgeRect4) 
+        trollgeRect4.x += 4   
+        print(trollgeRect4)
 
     # заливаем главный фон черным цветом
+    
     mainScreen.fill(mainScreenColor)
 
         
        
        
 
-    # рисуем блок еды
+    
     for platformrect in platforms:
         mainScreen.blit(platform, platformrect)
         
         
 
 
-    # рисуем змею
+    
     mainScreen.blit(man, manrect)
     mainScreen.blit(trollge, trollgeRect)
     mainScreen.blit(trollge, trollgeRect2)
     mainScreen.blit(trollge4, trollgeRect4)
+    mainScreen.blit(trollge5, trollgeRect5)
+    mainScreen.blit(trollge6, trollgeRect6)
     
 
     pygame.display.flip()
