@@ -73,7 +73,8 @@ trollgeRect6.left = WIDTH//2 + 525
 
 platform = pygame.image.load('walle.png')
 exitimage = pygame.image.load('portal.png')
-
+ror = 0
+ror1 = 0
 # platform = pygame.Surface((250, 100))
 
 # массив rect'ов для еды
@@ -82,28 +83,52 @@ platforms = [
 ]
 
 map =  [
-    '*****    **********************       *',
-    '*                                     *',
-    '*                                     *',
-    '*   ***************************       *',
-    '*                                     *',
-    '*                                     *',
-    '*                                     *',
-    '*                      ****           *',
-    '*                                     *',
-    '*          *****                      *',
-    '*                          ****       *',
-    '***                                   *',
-    '*                                     *',
-    '*     ***               **            *',
-    '*                                     *',
-    '****       ****              **       *',
-    '*                                     *',
-    '*                                     *',
-    '*                                     *',
-    '***************************************'
+    '*****----***********************',
+    '*                              *',
+    '*                              *',
+    '*   ****************************',
+    '*                              *',
+    '*                              *',
+    '*                              *',
+    '*                      ****    *',
+    '*                              *',
+    '*          *****               *',
+    '*                          *****',
+    '***                            *',
+    '*                              *',
+    '*     ***               **     *',
+    '*                              *',
+    '****       ****              ***',
+    '*                              *',
+    '*                              *',
+    '*                              *',
+    '********************************'
+
 ]
- 
+map1 =  [
+    '***********************----*****',
+    '*                              *',
+    '*                              *',
+    '*   **********            ******',
+    '*                              *',
+    '*                              *',
+    '*                              *',
+    '*                              *',
+    '*                              *',
+    '*           ****               *',
+    '*                          *****',
+    '***                            *',
+    '*                              *',
+    '*     ***                *     *',
+    '*                              *',
+    '*   ***   **                 ***',
+    '*                              *',
+    '*                              *',
+    '*                              *',
+    '********************************'
+
+]
+activemap = map
 
 
 
@@ -124,16 +149,15 @@ while 1:
     platforms = []
     exit = []
 
-
-    for i in range(len(map)):
-        for j in range(len(map[i])):
-            if map[i][j] == '*':
+    for i in range(len(activemap)):
+        for j in range(len(activemap[i])):
+            if activemap[i][j] == '*':
                 platformrect = platform.get_rect()
                 platformrect.x = 54 * j
                 platformrect.y = 54 * i
                 platforms.append(platformrect)
                 mainScreen.blit(platform, platformrect)
-            elif map[i][j] == '-':
+            elif activemap[i][j] == '-':
                 exitrect = platform.get_rect()
                 exitrect.x = 54 * j
                 exitrect.y = 54 * i
@@ -164,6 +188,8 @@ while 1:
         man = manr
         time = time + 1
         print(time)
+    if keys[pygame.K_1]:
+        activemap += map1
 
     if not keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]:
         changeX = 0
@@ -261,7 +287,20 @@ while 1:
     if trollgeRect4.x >= 100:
         trollgeRect4.x += 4   
         print(trollgeRect4)
+    
+    if manrect in trollgeRect6:
+        sys.exit()
+    if ror <= 55:
+        trollgeRect6.y += 8
+        ror += 1
+    if ror > 55:
+        trollgeRect6.y = 8 * ror
+        ror = 0
 
+
+
+
+        
     # заливаем главный фон черным цветом
     
     mainScreen.blit(back,back1)
@@ -282,7 +321,6 @@ while 1:
     mainScreen.blit(trollge, trollgeRect)
     mainScreen.blit(trollge, trollgeRect2)
     mainScreen.blit(trollge4, trollgeRect4)
-    mainScreen.blit(trollge5, trollgeRect5)
     mainScreen.blit(trollge6, trollgeRect6)
     
 
