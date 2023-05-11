@@ -71,6 +71,11 @@ trollgeRect6 = trollge6.get_rect()
 trollgeRect6.bottom = HEIGHT//2 + 30
 trollgeRect6.left = WIDTH//2 + 525
 
+portal = pygame.image.load('portal.png')
+portalRect = portal.get_rect()
+portalRect.bottom = 160
+portalRect.left = 1600
+
 platform = pygame.image.load('walle.png')
 exitimage = pygame.image.load('portal.png')
 ror = 0
@@ -83,7 +88,7 @@ platforms = [
 ]
 
 map =  [
-    '*****----***********************',
+    '********************************',
     '*                              *',
     '*                              *',
     '*   ****************************',
@@ -103,7 +108,6 @@ map =  [
     '*                              *',
     '*                              *',
     '********************************'
-
 ]
 map1 =  [
     '***********************----*****',
@@ -134,7 +138,7 @@ activemap = map
 
 
 
-while 1:
+while  1:
     # проверяем события, которые произошли (если они были)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -258,8 +262,7 @@ while 1:
 
        
     
-    if manrect in trollgeRect:
-
+    if manrect in trollgeRect: 
         sys.exit()
         
     if trollgeRect.x >= 1500:
@@ -280,30 +283,99 @@ while 1:
 
     if manrect in trollgeRect4:
         sys.exit()
-    if trollgeRect4.x >= 800:
+    if trollgeRect4.x >= 1400:
         trollgeRect4.x =  100
         print(trollgeRect4)
         
     if trollgeRect4.x >= 100:
         trollgeRect4.x += 4   
         print(trollgeRect4)
-    
+
+    if manrect in trollgeRect5:
+        sys.exit()
+    if trollgeRect5.x >= 1400:
+        trollgeRect5.x =  100
+        
+    if trollgeRect5.x >= 100:
+        trollgeRect5.x += 15
+
     if manrect in trollgeRect6:
         sys.exit()
-    if ror <= 55:
-        trollgeRect6.y += 8
-        ror += 1
-    if ror > 55:
-        trollgeRect6.y = 8 * ror
-        ror = 0
-
-
-
-
+    if trollgeRect6.y >= 610:
+        trollgeRect6.y =  400
         
-    # заливаем главный фон черным цветом
-    
-    mainScreen.blit(back,back1)
+    if trollgeRect6.y >= 100:
+        trollgeRect6.y +=  1
+
+    print(manrect.x)
+    print(manrect.y)
+
+    if manrect.x == 1622 and manrect.y == 108:
+        trollgeRect6.bottom = 4000
+        trollgeRect6.left = 4000
+        trollgeRect5.bottom = 4000
+        trollgeRect5.left = 4000
+        trollgeRect4.bottom = 4000
+        trollgeRect4.left = 4000
+        trollgeRect3.bottom = 4000
+        trollgeRect3.left = 4000
+        trollgeRect2.bottom = 4000
+        trollgeRect2.left = 4000
+        trollgeRect.bottom = 4000
+        trollgeRect.left = 4000
+        manrect.bottom = HEIGHT//2 +500
+        manrect.left = WIDTH//2 + 800
+        portalRect.bottom = 946
+        portalRect.left = 110
+
+        map =  [
+        '********************************',
+        '*             *                *',
+        '*             *                *',
+        '*     **      *     *******    *',
+        '*      ***    *     *     *    *',
+        '*        *    *     *     *    *',
+        '***      *          *          *',
+        '* *      *          *          *',
+        '* ***    ************   ********',
+        '*        *                     *',
+        '*        *                     *',
+        '*   ******   *******************',
+        '*   *              *   *     *  *',
+        '*   *              *         * *',
+        '*   *     ******   *      *    *',
+        '*   *          *   *   *   *   *',
+        '*   *          *****    *   ****',
+        '*   *******              *     *',
+        '*   *                     *    *',
+        '********************************'
+           ]
+        
+        if manrect== portalRect:
+             map =  [
+            '********************************',
+            '*             *                *',
+            '*             *                *',
+            '*     **      *     *******    *',
+            '*      ***    *     *     *    *',
+            '*        *    *     *     *    *',
+            '***      *          *          *',
+            '* *      *          *          *',
+            '* ***    ************          *',
+            '*        *                     *',
+            '*        *                     *',
+            '*   ******                      ',
+            '*   *              *   *     *  *',
+            '*   *              *         * *',
+            '*   *     ******   *      *    *',
+            '*   *          *   *   *   *   *',
+            '*   *          *****    *   ****',
+            '*   *******              *     *',
+            '*   *                     *    *',
+            '********************************'
+                ]
+
+    mainScreen.fill(mainScreenColor)
 
         
        
@@ -322,6 +394,8 @@ while 1:
     mainScreen.blit(trollge, trollgeRect2)
     mainScreen.blit(trollge4, trollgeRect4)
     mainScreen.blit(trollge6, trollgeRect6)
+
+    mainScreen.blit(portal, portalRect)
     
 
     pygame.display.flip()
