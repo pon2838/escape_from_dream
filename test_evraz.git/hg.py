@@ -304,7 +304,7 @@ while  1:
         trollgeRect.left = 4000
         manrect.bottom = HEIGHT//2 +500
         manrect.left = WIDTH//2 + 800
-        portalRect.bottom = 946
+        portalRect.bottom = 1020
         portalRect.left = 45
 
         activemap =  [
