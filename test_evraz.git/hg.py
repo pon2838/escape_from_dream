@@ -305,7 +305,7 @@ while  1:
         manrect.bottom = HEIGHT//2 +500
         manrect.left = WIDTH//2 + 800
         portalRect.bottom = 946
-        portalRect.left = 60
+        portalRect.left = 45
 
         activemap =  [
         '********************************',
