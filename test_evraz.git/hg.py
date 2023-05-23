@@ -92,6 +92,7 @@ portalRect.bottom = 160
 portalRect.left = 1600
 t = 15
 o = 100
+s = 0
 
 platform = pygame.image.load('walle.png')
 exitimage = pygame.image.load('portal.png')
@@ -420,6 +421,7 @@ while  1:
         '********************************'
             ]
     if manrect.x == 1622 and manrect.y == 162:
+        s = 1
         trollgeRect.x = 4000
         trollgeRect.y = 4000
         trollgeRect5.x = 4000
@@ -452,6 +454,14 @@ while  1:
         '*                              *',
         '********************************'
             ]
+        
+
+    if s >= 1:
+        s+=1
+        print(s)
+
+    if s == 500:
+        a = 0
 
     mainScreen.fill(mainScreenColor)
 
