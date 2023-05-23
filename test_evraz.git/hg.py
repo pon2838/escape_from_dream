@@ -71,10 +71,27 @@ trollgeRect6 = trollge6.get_rect()
 trollgeRect6.bottom = HEIGHT//2 + 30
 trollgeRect6.left = WIDTH//2 + 525
 
+trollge7 = pygame.image.load('trollge.png')
+trollgeRect7 = trollge7.get_rect()
+trollgeRect7.bottom = 4000
+trollgeRect7.left = 4000
+
+trollge8 = pygame.image.load('trollge.png')
+trollgeRect8 = trollge8.get_rect()
+trollgeRect8.bottom = 4000
+trollgeRect8.left = 4000
+
+trollge9 = pygame.image.load('trollge.png')
+trollgeRect9 = trollge9.get_rect()
+trollgeRect9.bottom = 4000
+trollgeRect9.left = 4000
+
 portal = pygame.image.load('portal.png')
 portalRect = portal.get_rect()
 portalRect.bottom = 160
 portalRect.left = 1600
+t = 15
+o = 100
 
 platform = pygame.image.load('walle.png')
 exitimage = pygame.image.load('portal.png')
@@ -245,10 +262,11 @@ while  1:
         sys.exit()
         
     if trollgeRect.x >= 1500:
-        trollgeRect.x =  100
+        trollgeRect.x =  o
         
     if trollgeRect.x >= 100:
-        trollgeRect.x += 15   
+        trollgeRect.x += t
+         
 
 
     if manrect in trollgeRect2:
@@ -264,16 +282,16 @@ while  1:
         sys.exit()
     if trollgeRect4.x >= 1400:
         trollgeRect4.x =  100
-        print(trollgeRect4)
+       
         
     if trollgeRect4.x >= 100:
         trollgeRect4.x += 4   
-        print(trollgeRect4)
+        
 
     if manrect in trollgeRect5:
         sys.exit()
     if trollgeRect5.x >= 1400:
-        trollgeRect5.x =  100
+        trollgeRect5.x =  280
         
     if trollgeRect5.x >= 100:
         trollgeRect5.x += 15
@@ -285,6 +303,36 @@ while  1:
         
     if trollgeRect6.y >= 100:
         trollgeRect6.y +=  1
+    
+    if manrect in trollgeRect7: 
+        sys.exit()
+    
+    if trollgeRect7.x >= 1325:
+        trollgeRect7.x =  200
+        
+    if trollgeRect7.x >= 100:
+        trollgeRect7.x += t 
+
+    if manrect in trollgeRect8: 
+        sys.exit()
+    
+    if trollgeRect8.x >= 1325: 
+        trollgeRect8.x =  280
+        
+    if trollgeRect8.x >= 100:
+        trollgeRect8.x += t
+        
+
+    if manrect in trollgeRect9: 
+        sys.exit()
+    
+    if trollgeRect9.x >= 1325: 
+        trollgeRect9.x =  280
+        
+    if trollgeRect9.x >= 100:
+        trollgeRect9.x += t
+        
+
 
     print('x',manrect.x)
     print('y',manrect.y)
@@ -300,8 +348,10 @@ while  1:
         trollgeRect3.left = 4000
         trollgeRect2.bottom = 4000
         trollgeRect2.left = 4000
-        trollgeRect.bottom = 4000
-        trollgeRect.left = 4000
+        trollgeRect.bottom = 590
+        trollgeRect.left = 500
+        t = 5
+        o = 650
         manrect.bottom = HEIGHT//2 +500
         manrect.left = WIDTH//2 + 800
         portalRect.bottom = 1020
@@ -309,13 +359,13 @@ while  1:
 
         activemap =  [
         '********************************',
-        '*             *                *',
-        '*             *                *',
-        '*     **      *     *******    *',
-        '*      ***    *     *     *    *',
-        '*        *    *     *     *    *',
-        '***      *          *          *',
-        '* *      *          *          *',
+        '*             *               **',
+        '*             *               **',
+        '*     **      *     *******   **',
+        '*      ***    *     *     *   **',
+        '*        *    *     *     *   **',
+        '***      *          *         **',
+        '* *      *          *         **',
         '* ***    ************   ********',
         '*        *                     *',
         '*        *                     *',
@@ -335,12 +385,22 @@ while  1:
         manrect.left = WIDTH//2 + 800
         trollgeRect.x = 200
         trollgeRect.y = 946
-        portalRect.bottom = 200
-        portalRect.left = 750
+        trollgeRect5.x = 200
+        trollgeRect5.y = 620 
+        trollgeRect7.x = 200
+        trollgeRect7.y = 785
+        trollgeRect8.x = 200
+        trollgeRect8.y = 465
+        trollgeRect9.x = 200
+        trollgeRect9.y = 290
+        portalRect.bottom = 220
+        portalRect.left = 1610
+        t = 15
+        o = 250
         activemap =  [
         '********************************',
-        '*                              *',
-        '*                              *',
+        '********************************',
+        '*                             **',
         '*                              *',
         '*     **************************',
         '*                              *',
@@ -355,6 +415,39 @@ while  1:
         '*                              *',
         '*                              *',
         '*    ***************************',
+        '*                              *',
+        '**                             *',
+        '********************************'
+            ]
+    if manrect.x == 1622 and manrect.y == 162:
+        trollgeRect.x = 4000
+        trollgeRect.y = 4000
+        trollgeRect5.x = 4000
+        trollgeRect5.y = 4000 
+        trollgeRect7.x = 4000
+        trollgeRect7.y = 4000
+        trollgeRect8.x = 4000
+        trollgeRect8.y = 4000
+        trollgeRect9.x = 4000
+        trollgeRect9.y = 4000
+        activemap =  [
+        '********************************',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
+        '*                              *',
         '*                              *',
         '*                              *',
         '********************************'
@@ -380,6 +473,9 @@ while  1:
     mainScreen.blit(trollge5, trollgeRect5)
     mainScreen.blit(trollge4, trollgeRect4)
     mainScreen.blit(trollge6, trollgeRect6)
+    mainScreen.blit(trollge7, trollgeRect7)
+    mainScreen.blit(trollge8, trollgeRect8)
+    mainScreen.blit(trollge9, trollgeRect9)
 
     mainScreen.blit(portal, portalRect)
     
