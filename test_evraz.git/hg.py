@@ -86,6 +86,11 @@ trollgeRect9 = trollge9.get_rect()
 trollgeRect9.bottom = 4000
 trollgeRect9.left = 4000
 
+boss = pygame.image.load('boss.png')
+bossrect = boss.get_rect()
+bossrect.bottom = 10000
+bossrect.left = 10000
+
 portal = pygame.image.load('portal.png')
 portalRect = portal.get_rect()
 portalRect.bottom = 160
@@ -332,6 +337,10 @@ while  1:
         
     if trollgeRect9.x >= 100:
         trollgeRect9.x += t
+
+
+    if manrect in bossrect:
+        sys.exit()
         
 
 
@@ -419,6 +428,10 @@ while  1:
         manrect.left = WIDTH//2 + 800
         portalRect.bottom = 10200
         portalRect.left = 16400
+        trollgeRect.x = 15000
+        trollgeRect.y = 9460
+        bossrect.x = 812
+        bossrect.y = 195
         activemap =  [
         '********************************',
         '*                          *****',
@@ -467,6 +480,8 @@ while  1:
     mainScreen.blit(trollge7, trollgeRect7)
     mainScreen.blit(trollge8, trollgeRect8)
     mainScreen.blit(trollge9, trollgeRect9)
+
+    mainScreen.blit(boss,bossrect)
 
     mainScreen.blit(portal, portalRect)
     
