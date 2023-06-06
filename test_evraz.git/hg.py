@@ -1,5 +1,6 @@
 import pygame, sys
 import random
+import time
 pygame.init()
 
 # цвета
@@ -32,6 +33,11 @@ onGround = True
 onPlatform = False
 
 # block2 = pygame.Surface((100, 100))
+
+exit = 0
+
+
+
 manjump = pygame.image.load('man_jump.png')
 manstand = pygame.image.load('man_stand.png')
 manr = pygame.image.load('man_walk.png')
@@ -99,6 +105,19 @@ t = 15
 o = 100
 s = 0
 
+hp = '150'
+dam = 20
+
+
+
+f2 = pygame.font.Font(None, 60)
+text2 = f2.render('GAME OVER', 1, (180, 0, 0))
+
+f1 = pygame.font.Font(None, 60)
+text1 = f1.render(hp, 1, (180, 0, 0))
+
+bullets = []
+
 platform = pygame.image.load('walle.png')
 exitimage = pygame.image.load('portal.png')
 ror = 0
@@ -136,10 +155,10 @@ map =  [
 activemap = map
 
 
+game = 1
 
 
-
-while  1:
+while 1:
     # проверяем события, которые произошли (если они были)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -193,13 +212,15 @@ while  1:
         man = manr
         time = time + 1
         print(time)
-    if keys[pygame.K_2]:
+    if keys[pygame.K_HOME]:
         manrect.x = 1568
         manrect.y = 108
 
     if not keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]:
         changeX = 0
         man = manstand
+
+
 
     if jump:
         manrect.y -= jumpCount
@@ -265,7 +286,8 @@ while  1:
        
     
     if manrect in trollgeRect: 
-        sys.exit()
+        hp = int(hp) - dam
+        hp = str(hp)
         
     if trollgeRect.x >= 1500:
         trollgeRect.x =  o
@@ -276,7 +298,8 @@ while  1:
 
 
     if manrect in trollgeRect2:
-        sys.exit()
+        hp = int(hp) - dam
+        hp = str(hp)
     if trollgeRect2.y >= 800:
         trollgeRect2.y =  150
         
@@ -285,7 +308,8 @@ while  1:
 
 
     if manrect in trollgeRect4:
-        sys.exit()
+        hp = int(hp) - dam
+        hp = str(hp)
     if trollgeRect4.x >= 1400:
         trollgeRect4.x =  100
        
@@ -295,7 +319,8 @@ while  1:
         
 
     if manrect in trollgeRect5:
-        sys.exit()
+        hp = int(hp) - dam
+        hp = str(hp)
     if trollgeRect5.x >= 1400:
         trollgeRect5.x =  280
         
@@ -303,7 +328,8 @@ while  1:
         trollgeRect5.x += 15
 
     if manrect in trollgeRect6:
-        sys.exit()
+        hp = int(hp) - dam
+        hp = str(hp)
     if trollgeRect6.y >= 610:
         trollgeRect6.y =  400
         
@@ -311,7 +337,8 @@ while  1:
         trollgeRect6.y +=  1
     
     if manrect in trollgeRect7: 
-        sys.exit()
+        hp = int(hp) - dam
+        hp = str(hp)
     
     if trollgeRect7.x >= 1325:
         trollgeRect7.x =  200
@@ -320,7 +347,8 @@ while  1:
         trollgeRect7.x += t 
 
     if manrect in trollgeRect8: 
-        sys.exit()
+        hp = int(hp) - dam
+        hp = str(hp)
     
     if trollgeRect8.x >= 1325: 
         trollgeRect8.x =  280
@@ -330,17 +358,19 @@ while  1:
         
 
     if manrect in trollgeRect9: 
-        sys.exit()
+        hp = int(hp) - dam
+        hp = str(hp)
     
     if trollgeRect9.x >= 1325: 
         trollgeRect9.x =  280
         
     if trollgeRect9.x >= 100:
-        trollgeRect9.x += t
+        trollgeRect9.x += t 
 
 
     if manrect in bossrect:
-        sys.exit()
+        hp = int(hp) - dam
+        hp = str(hp)
         
 
 
@@ -455,12 +485,13 @@ while  1:
         '********************************'
           ]
 
-
- 
+    
     mainScreen.fill(mainScreenColor)
 
+
         
-       
+    if int(hp) <= 0:
+        exit = 1
        
 
     
@@ -469,7 +500,7 @@ while  1:
         
         
 
-
+    text1 = f1.render(hp, 1, (180, 0, 0))
     
     mainScreen.blit(man, manrect)
     mainScreen.blit(trollge, trollgeRect)
@@ -485,6 +516,17 @@ while  1:
 
     mainScreen.blit(portal, portalRect)
     
+    
+    mainScreen.blit(text1, (10, 20))
+
+
+    if exit == 1:
+
+        mainScreen.blit(back,back1)
+        mainScreen.blit(text2, (WIDTH/2, HEIGHT/2))
+        game += 1
+    if game == 250:
+        sys.exit()
 
     pygame.display.flip()
     clock.tick(FPS)
