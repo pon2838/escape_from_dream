@@ -463,8 +463,7 @@ while 1:
         '********************************'
           ]
 
-    if manrect.x == 160 and manrect.y == 1000:
-        mainScreen.blit(text3, (WIDTH/2, HEIGHT/2))
+
 
 
 
@@ -503,6 +502,14 @@ while 1:
     
     
     mainScreen.blit(text1, (10, 20))
+
+    if manrect.x == 164 and manrect.y == 946:
+
+        mainScreen.blit(back,back1)
+        mainScreen.blit(text3, (WIDTH/2, HEIGHT/2))
+        game += 1
+    if game == 250:
+        sys.exit()
 
 
     if exit == 1:
