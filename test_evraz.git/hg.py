@@ -14,6 +14,10 @@ SPEED = 9
 changeX = 0
 time = 0
 
+move = 20
+movex = random.randint(-50,50)
+movey = random.randint(-50,50)
+
 # настройки главного экрана
 WIDTH = 1500
 HEIGHT = 1000
@@ -97,6 +101,9 @@ bossrect = boss.get_rect()
 bossrect.bottom = 10000
 bossrect.left = 10000
 
+bullet = pygame.image.load('bul.png')
+bulreck = bullet.get_rect()
+
 portal = pygame.image.load('portal.png')
 portalRect = portal.get_rect()
 portalRect.bottom = 160
@@ -115,6 +122,9 @@ text2 = f2.render('GAME OVER', 1, (180, 0, 0))
 
 f1 = pygame.font.Font(None, 60)
 text1 = f1.render(hp, 1, (180, 0, 0))
+
+f3 = pygame.font.Font(None, 60)
+text3 = f3.render('VICTORY', 1, (180, 0, 0))
 
 bullets = []
 
@@ -453,38 +463,13 @@ while 1:
         '********************************'
           ]
 
-    if manrect.x == 164 and manrect.y == 946:
-        manrect.bottom = HEIGHT//2 +500
-        manrect.left = WIDTH//2 + 800
-        portalRect.bottom = 10200
-        portalRect.left = 16400
-        trollgeRect.x = 15000
-        trollgeRect.y = 9460
-        bossrect.x = 812
-        bossrect.y = 195
-        activemap =  [
-        '********************************',
-        '*                          *****',
-        '*                          *****',
-        '*                              *',
-        '*                              *',
-        '*                              *',
-        '*                              *',
-        '*       ****                   *',
-        '*                              *',
-        '*                              *',
-        '*                        ***   *',
-        '*                              *',
-        '*                              *',
-        '*                              *',
-        '*       *********              *',
-        '*                              *',
-        '*                      ***     *',
-        '*****                          *',
-        '*****                          *',
-        '********************************'
-          ]
+    if manrect.x == 160 and manrect.y == 1000:
+        mainScreen.blit(text3, (WIDTH/2, HEIGHT/2))
 
+
+
+
+    
     
     mainScreen.fill(mainScreenColor)
 
